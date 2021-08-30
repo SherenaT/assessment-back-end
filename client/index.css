@@ -1,0 +1,31 @@
+body {
+  background-color: #ff4444;
+}
+header {
+  text-align: center;
+  font-family: "Staatliches", cursive;
+}
+#full_menu {
+  background-color: aliceblue;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: 10px;
+  border-style: double;
+  border-color: #ffd800;
+  margin: 10px;
+  padding: 10px;
+}
+h3 {
+  text-decoration: underline;
+}
+button {
+  margin: 20px;
+  border-radius: 50%;
+  padding: 15px 20px;
+  background-color: #ffd800;
+  font-weight: bold;
+}
+
+#submitOrder {
+  padding: 15px 30px;
+  background-color: #ff4444;
+}

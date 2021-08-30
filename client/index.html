@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<h>
+  <head>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <title>Back End Assessment</title>
+  </head>
+  <main>
+  <body class="container">
+    <header>
+      <h1>
+    Welcome to Lucky Dragon's Restaurant
+      <h1/>
+    <button id="complimentButton">Get a compliment</button>
+    <button id="fcFortune">Fortune Cookie Fortunes</button>
+  </header>
+    <br> <br>
+    <section id="full_menu">
+      <h3>Full Menu</h3>
+      <form id="menuOrder">
+      <div id="items">
+            <input type="checkbox" name="chkbox" id="orangeChicken">
+            <select name="quantity" id="oChknValue">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="five">5</option>
+              <option value="6">6</option>
+            </select>
+            <label for="orangeChicken">Orange Chicken</label>
+          <br>
+            <input type="checkbox" name="chkbox" id="chowMein">
+            <select name="quantity" id="chowMeinValue">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+            <label for="chowMein">Chow Mein</label>
+          <br>
+            <input type="checkbox" name="chkbox" id="friedRice">
+            <select name="quantity" id="friedRiceValue">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+            <label for="friedRice">Fried Rice</label>
+          <br>
+
+            <input type="checkbox" name="chkbox" id="fortCke">
+            <select name="quantity" id="fortCkeValue">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+            <label for="fortCke">Fortune Cookie</label>
+          <br>
+          <button id="submitOrder">Submit</button>
+       </form>
+    </section>
+    <section id="orderedFoodSection"></section>
+  <br><br>
+</main>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </script>
+    <script src="./main.js"></script>
+  </body>
+</h
+tml>
