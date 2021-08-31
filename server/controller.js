@@ -1,5 +1,7 @@
 //create variable to connect to index file
-console.log("test");
+
+const mealOrder = [];
+globalId = 1;
 
 module.exports = {
   //variables
@@ -40,5 +42,31 @@ module.exports = {
     sumbitOrd = "Your order was submitted";
 
     res.status(200).send(sumbitOrd);
+  },
+  addItem: (req, res) => {
+    const { fullName, orgChk, chwMin, friedRice, fortuneCookie } = req.body;
+
+    let newItem = {
+      fullName,
+      orgChk,
+      chwMin,
+      friedRice,
+      fortuneCookie,
+      id: globalId,
+    };
+
+    mealOrder.push(newItem);
+    console.log(mealOrder);
+    res.status(200).send(mealOrder);
+    globalId++;
+  },
+  deleteItem: (req, res) => {
+    const { id } = req.params;
+
+    const index = mealOrder.findIndex((e) => e.id === +id);
+
+    mealOrder.splice(index, 1);
+
+    res.status(200).send(mealOrder);
   },
 };

@@ -1,9 +1,15 @@
 console.log("test");
-complimentBtn = document.getElementById("complimentButton");
-fortuneButton = document.querySelector("#fcFortune");
-form = document.querySelector("#menuOrder");
-chkbox = document.querySelector("#chkbox");
-submitBtn = document.querySelector("#submitOrder");
+const complimentBtn = document.getElementById("complimentButton");
+const fortuneButton = document.querySelector("#fcFortune");
+const form = document.querySelector("#menuOrder");
+const chkbox = document.querySelector("#chkbox");
+const submitBtn = document.querySelector("#submitOrder");
+const fullName = document.getElementById("full-name");
+const wishlistSection = document.getElementById("wishlist-section");
+const orangeChickenQuantity = document.getElementById("oChknValue").value;
+const chowMeinQuanity = document.getElementById("chowMeinValue").value;
+const friedRiceQuantity = document.getElementById("friedRiceValue").value;
+const fortuneCookieQuantity = document.getElementById("fortCkeValue").value;
 
 const baseURL = `http://localhost:4000/`;
 
@@ -22,18 +28,69 @@ fortuneButton.addEventListener("click", () => {
 });
 
 submitBtn.addEventListener("click", () => {
-  orangeChickenQuantity = document.getElementById("oChknValue").value;
-  chowMeinQuanity = document.getElementById("chowMeinValue").value;
-  friedRiceQuantity = document.getElementById("friedRiceValue").value;
-  fortuneCookieQuantity = document.getElementById("fortCkeValue").value;
-
   axios.get(`${baseURL}api/submitOrder/`).then(function (response) {
     const data = response.data;
     alert(data);
     confirm(
-      `You ordered ${orangeChickenQuantity} Orange Chicken, ${chowMeinQuanity} Chow Mein, ${friedRiceQuantity} Fried Rice, and ${fortuneCookieQuantity} Fortune Cookie`
+      `You ordered ${orangeChickenQuantity}, ${chowMeinQuanity}, ${friedRiceQuantity}, and ${fortuneCookieQuantity}.`
     );
   });
+});
+
+// makes the cards to display the items.
+const displayItems = (arr) => {
+  console.log(arr);
+  while (wishlistSection.firstChild) {
+    wishlistSection.removeChild(wishlistSection.firstChild);
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    const newItem = document.createElement("div");
+
+    newItem.className = "new-item";
+
+    newItem.innerHTML = `<h1 class='item-title'>${arr[i].name}</h1>
+        <p>priority: ${arr[i].priority}</p>
+        <button class='delete-btn' value="${arr[i].id}">delete</button>`;
+
+    wishlistSection.appendChild(newItem);
+
+    let deleteBtns = document.getElementsByClassName("delete-btn");
+
+    for (let i = 0; i < deleteBtns.length; i++) {
+      deleteBtns[i].addEventListener("click", deleteItem);
+    }
+  }
+};
+
+// Delete an item
+const deleteItem = (e) => {
+  axios.delete(`${baseURL}api/wishlist/${e.target.value}`).then((res) => {
+    displayItems(res.data);
+  });
+};
+
+// Adding a wishlist item
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const newItem = {
+    fullName: fullName.value,
+    orgChk: orangeChickenQuantity,
+    chwMin: chowMeinQuanity,
+    friedRice: friedRiceQuantity,
+    fortuneCookie: fortuneCookieQuantity,
+  };
+
+  axios.post(`${baseURL}api/seeOrder`, newItem).then((res) => {
+    displayItems(res.data);
+  });
+
+  fullName.value = "";
+  orangeChickenQuantity.selectedIndex = 0;
+  chowMeinQuanity.selectedIndex = 0;
+  friedRiceQuantity.selectedIndex = 0;
+  fortuneCookieQuantity.selectedIndex = 0;
 });
 
 // form.addEventListener("submit", (e) => {

@@ -16,65 +16,68 @@
     <button id="complimentButton">Get a compliment</button>
     <button id="fcFortune">Fortune Cookie Fortunes</button>
   </header>
-    <br> <br>
-    <section id="full_menu">
+  <br>
+  <section id="full_menu">
+    <form id="menuOrder">
+      <input type="text" id="full-name" placeholder="Enter Full Name Here"/><br>
       <h3>Full Menu</h3>
-      <form id="menuOrder">
       <div id="items">
             <input type="checkbox" name="chkbox" id="orangeChicken">
             <select name="quantity" id="oChknValue">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="five">5</option>
-              <option value="6">6</option>
+              <option value="No Orange Chicken">0</option>
+              <option value="1 Orange Chicken">1</option>
+              <option value="2 Orange Chicken">2</option>
+              <option value="3 Orange Chicken">3</option>
+              <option value="4 Orange Chicken">4</option>
+              <option value="5 Orange Chicken">5</option>
+              <option value="6 Orange Chicken">6</option>
             </select>
             <label for="orangeChicken">Orange Chicken</label>
           <br>
             <input type="checkbox" name="chkbox" id="chowMein">
             <select name="quantity" id="chowMeinValue">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
+              <option value="No Chow Mein">0</option>
+              <option value="1 Chow Mein">1</option>
+              <option value="2 Chow Mein">2</option>
+              <option value="3 Chow Mein">3</option>
+              <option value="4 Chow Mein">4</option>
+              <option value="5 Chow Mein">5</option>
+              <option value="6 Chow Mein">6</option>
             </select>
             <label for="chowMein">Chow Mein</label>
           <br>
             <input type="checkbox" name="chkbox" id="friedRice">
             <select name="quantity" id="friedRiceValue">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
+              <option value="No Fried Rice">0</option>
+              <option value="1 Fried Rice">1</option>
+              <option value="2 Fried Rice">2</option>
+              <option value="3 Fried Rice">3</option>
+              <option value="4 Fried Rice">4</option>
+              <option value="5 Fried Rice">5</option>
+              <option value="6 Fried Rice">6</option>
             </select>
             <label for="friedRice">Fried Rice</label>
           <br>
 
             <input type="checkbox" name="chkbox" id="fortCke">
             <select name="quantity" id="fortCkeValue">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
+              <option value="No Fortune Cookies">0</option>
+              <option value="1 Fortune Cookie">1</option>
+              <option value="2 Fortune Cookies">2</option>
+              <option value="3 Fortune Cookies">3</option>
+              <option value="4 Fortune Cookies">4</option>
+              <option value="5 Fortune Cookies">5</option>
+              <option value="6 Fortune Cookies">6</option>
             </select>
             <label for="fortCke">Fortune Cookie</label>
           <br>
           <button id="submitOrder">Submit</button>
        </form>
-    </section>
-    <section id="orderedFoodSection"></section>
   <br><br>
+
+
+  <section id="wishlist-section"></section>
+</main>
 </main>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

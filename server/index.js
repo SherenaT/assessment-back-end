@@ -17,5 +17,9 @@ app.get("/api/fortune", ctrl.fortunecookies);
 
 app.get("/api/submitOrder", ctrl.sumbitOrd);
 
+app.post("/api/seeOrder", ctrl.addItem);
+
+app.delete("/api/wishlist/:id", ctrl.deleteItem);
+
 console.log("testing");
 app.listen(4000, () => console.log("Server running on 4000"));
