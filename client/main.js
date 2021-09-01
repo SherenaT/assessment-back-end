@@ -5,7 +5,11 @@ const form = document.querySelector("#menuOrder");
 const chkbox = document.querySelector("#chkbox");
 const submitBtn = document.querySelector("#submitOrder");
 const fullName = document.getElementById("full-name");
-const wishlistSection = document.getElementById("wishlist-section");
+const orderSection = document.getElementById("order-section");
+const orangeChickenQuantity = document.getElementById("oChknValue");
+const chowMeinQuanity = document.getElementById("chowMeinValue");
+const friedRiceQuantity = document.getElementById("friedRiceValue");
+const fortuneCookieQuantity = document.getElementById("fortCkeValue");
 
 const baseURL = `http://localhost:4000/`;
 
@@ -24,102 +28,71 @@ fortuneButton.addEventListener("click", () => {
 });
 
 submitBtn.addEventListener("click", () => {
-  const orangeChickenQuantity = document.getElementById("oChknValue").value;
-  const chowMeinQuanity = document.getElementById("chowMeinValue").value;
-  const friedRiceQuantity = document.getElementById("friedRiceValue").value;
-  const fortuneCookieQuantity = document.getElementById("fortCkeValue").value;
   axios.get(`${baseURL}api/submitOrder/`).then(function (response) {
     const data = response.data;
     alert(data);
-    confirm(
-      `You ordered ${orangeChickenQuantity}, ${chowMeinQuanity}, ${friedRiceQuantity}, and ${fortuneCookieQuantity}.`
-    );
+    // confirm(
+    //   `You ordered ${orangeChickenQuantity.value}, ${chowMeinQuanity.value}, ${friedRiceQuantity.value}, and ${fortuneCookieQuantity.value}.`
+    // );
   });
 });
 
-// // makes the cards to display the items.
-// const displayItems = (arr) => {
-//   console.log(arr);
-//   while (wishlistSection.firstChild) {
-//     wishlistSection.removeChild(wishlistSection.firstChild);
-//   }
+// makes the cards to display the items.
+const displayItems = (arr) => {
+  console.log(arr);
+  while (orderSection.firstChild) {
+    orderSection.removeChild(orderSection.firstChild);
+  } //as long as there
 
-//   for (let i = 0; i < arr.length; i++) {
-//     const newItem = document.createElement("div");
+  for (let i = 0; i < arr.length; i++) {
+    const newItem = document.createElement("div");
 
-//     newItem.className = "new-item";
+    newItem.className = "new-item";
 
-//     newItem.innerHTML = `<h1 class='item-title'>${arr[i].name}</h1>
-//         <p>priority: ${arr[i].priority}</p>
-//         <button class='delete-btn' value="${arr[i].id}">delete</button>`;
+    newItem.innerHTML = `<h1 class='item-title'>Customers Name: ${arr[i].fullName}</h1>
+        <p>order: ${arr[i].orgChk}, ${arr[i].chwMin}, ${arr[i].friedRice}, and ${arr[i].fortuneCookie}</p>
+        <button class='delete-btn' value="${arr[i].id}">delete</button>`;
 
-//     wishlistSection.appendChild(newItem);
+    orderSection.appendChild(newItem);
 
-//     let deleteBtns = document.getElementsByClassName("delete-btn");
+    let deleteBtns = document.getElementsByClassName("delete-btn");
 
-//     for (let i = 0; i < deleteBtns.length; i++) {
-//       deleteBtns[i].addEventListener("click", deleteItem);
-//     }
-//   }
-// };
+    for (let i = 0; i < deleteBtns.length; i++) {
+      deleteBtns[i].addEventListener("click", deleteItem);
+    }
+  }
+};
 
-// // Delete an item
-// const deleteItem = (e) => {
-//   axios.delete(`${baseURL}api/wishlist/${e.target.value}`).then((res) => {
-//     displayItems(res.data);
-//   });
-// };
+// Delete an item
+const deleteItem = (e) => {
+  axios.delete(`${baseURL}api/order/${e.target.value}`).then((res) => {
+    displayItems(res.data);
+  });
+};
 
-// // Adding a wishlist item
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
+// Adding a order item
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-//   const newItem = {
-//     fullName: fullName.value,
-//     orgChk: orangeChickenQuantity,
-//     chwMin: chowMeinQuanity,
-//     friedRice: friedRiceQuantity,
-//     fortuneCookie: fortuneCookieQuantity,
-//   };
+  const newItem = {
+    fullName: fullName.value,
+    orgChk: orangeChickenQuantity.value,
+    chwMin: chowMeinQuanity.value,
+    friedRice: friedRiceQuantity.value,
+    fortuneCookie: fortuneCookieQuantity.value,
+  };
 
-//   axios.post(`${baseURL}api/seeOrder`, newItem).then((res) => {
-//     displayItems(res.data);
-//   });
+  axios.post(`${baseURL}api/seeOrder`, newItem).then((res) => {
+    displayItems(res.data);
+  });
 
-//   fullName.value = "";
-//   orangeChickenQuantity.selectedIndex = 0;
-//   chowMeinQuanity.selectedIndex = 0;
-//   friedRiceQuantity.selectedIndex = 0;
-//   fortuneCookieQuantity.selectedIndex = 0;
-// });
+  fullName.value = "";
+  orangeChickenQuantity.selectedIndex = 0;
+  chowMeinQuanity.selectedIndex = 0;
+  friedRiceQuantity.selectedIndex = 0;
+  fortuneCookieQuantity.selectedIndex = 0;
+});
 
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   //1. grab all the form data (quanity of ordered food), learned how to grab selected value
-//   orangeChickenQuantity = document.getElementById("oChknValue").value;
-//   chowMeinQuanity = document.getElementById("chowMeinValue").value;
-//   friedRiceQuantity = document.getElementById("friedRiceValue").value;
-//   fortuneCookieQuantity = document.getElementById("fortCkeValue").value;
-//   let items = ["Orange Chicken", "Chow Mein", "Fried Rice", "Fortune Cookie"];
-
-//   getCheckBox = function () {
-//     let checkbox = document.getElementsByClassName("chkbox");
-
-//     console.log(checkbox);
-//   };
-//   getCheckBox();
-//   // alert(fortuneCookieQuantity, checkbox);
-
-//   //2.put all data into object called ordered
-//   ordered = {};
-//   ordered.push;
-
-//   //3.post the data to anxios endpoint with the object created of order
-//   // axios.post(`${baseURL}api/submitOrder/`).then(function (response) {
-//   //   const data = response.data;
-//   //   alert(data);
-//   // });
-// });
 //create variable for button
 //create axios connection
 //connect through back end with end point
